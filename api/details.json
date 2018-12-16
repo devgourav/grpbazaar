@@ -6,5 +6,11 @@
   },
   "codes":{
     "success":"200"
+  },
+  "details":{
+    "contact":{
+      "callContactNumber":"6232725200",
+      "whatsappContactNumber":"6232725200"
+    }
   }
 }

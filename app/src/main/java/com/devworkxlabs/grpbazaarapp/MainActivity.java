@@ -4,6 +4,7 @@ package com.devworkxlabs.grpbazaarapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
@@ -67,21 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
         final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.fab_menu);
 
-        FloatingActionButton callAction = findViewById(R.id.callAction);
-        callAction.setColorNormalResId(R.color.background);
-        callAction.setColorPressedResId(R.color.white_pressed);
-        callAction.setIcon(R.drawable.ic_phone_black_24dp);
-        callAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9158920775"));
-                startActivity(intent);
-            }
-        });
-
         FloatingActionButton shopAction = findViewById(R.id.shopAction);
-        shopAction.setColorNormalResId(R.color.background);
+        shopAction.setColorNormalResId(R.color.white);
         shopAction.setColorPressedResId(R.color.white_pressed);
         shopAction.setIcon(R.drawable.ic_shopping_basket_black_24dp);
         shopAction.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +80,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton callAction = findViewById(R.id.callAction);
+        callAction.setColorNormalResId(R.color.white);
+        callAction.setColorPressedResId(R.color.white_pressed);
+        callAction.setIcon(R.drawable.ic_phone_black_24dp);
+
+        SharedPreferences sharedPref = this.getSharedPreferences("pref",Context.MODE_PRIVATE);
+        final String callContactNumber = sharedPref.getString("callContactNumber","6232725200");
+
+        callAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(callContactNumber));
+                startActivity(intent);
+            }
+        });
+
+
         FloatingActionButton rateAction = findViewById(R.id.rateAction);
-        rateAction.setColorNormalResId(R.color.background);
+        rateAction.setColorNormalResId(R.color.white);
         rateAction.setColorPressedResId(R.color.white_pressed);
         rateAction.setIcon(R.drawable.ic_rate_review_black_24dp);
         rateAction.setOnClickListener(new View.OnClickListener() {

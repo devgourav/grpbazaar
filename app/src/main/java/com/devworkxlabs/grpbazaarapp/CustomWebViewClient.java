@@ -98,7 +98,7 @@ class CustomWebViewClient extends WebViewClient {
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         view.getSettings().setJavaScriptEnabled(true);
-        view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        view.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         view.getSettings().setDomStorageEnabled(true);
         view.getSettings().setDatabaseEnabled(true);
         view.getSettings().setAppCacheEnabled(true);

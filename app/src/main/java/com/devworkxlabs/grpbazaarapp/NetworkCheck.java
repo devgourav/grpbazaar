@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -30,7 +31,10 @@ public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
     private static final Integer SETTINGS_REQUEST_CODE = 1 ;
     String latestVersionName;
     String successCode;
+    String callContactNumber;
     Context context;
+
+
 
     public NetworkCheck(Context context) {
         this.context = context;
@@ -65,9 +69,19 @@ public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
 
                 successCode = detailsObject.getJSONObject("codes").getString("success");
                 latestVersionName = detailsObject.getJSONObject("metaDetails").getString("versionName");
+                callContactNumber = detailsObject.getJSONObject("details").getJSONObject("callContactNumber").getString("versionName");
+
+
+                SharedPreferences sharedPref = context.getSharedPreferences("pref",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(successCode, successCode);
+                editor.putString(latestVersionName, latestVersionName);
+                editor.putString(callContactNumber, callContactNumber);
+                editor.apply();
 
                 Log.d(LOG_TAG,successCode);
                 Log.d(LOG_TAG,latestVersionName);
+                Log.d(LOG_TAG,callContactNumber);
 
                 return successCode.equals("200");
             } catch (MalformedURLException e) {
