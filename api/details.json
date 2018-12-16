@@ -1,7 +1,8 @@
 {
   "metaDetails":{
     "name":"GRP Bazaar",
-    "version":"1.2"
+    "versionName":"1.2",
+    "versionCode":"4"
   },
   "codes":{
     "success":"200"

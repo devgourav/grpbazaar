@@ -28,7 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
     private static final String LOG_TAG = "networkCheck" ;
     private static final Integer SETTINGS_REQUEST_CODE = 1 ;
-    String latestVersionCode;
+    String latestVersionName;
     String successCode;
     Context context;
 
@@ -64,10 +64,10 @@ public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
                 JSONObject detailsObject = new JSONObject(buffer.toString());
 
                 successCode = detailsObject.getJSONObject("codes").getString("success");
-                latestVersionCode = detailsObject.getJSONObject("metaDetails").getString("version");
+                latestVersionName = detailsObject.getJSONObject("metaDetails").getString("versionName");
 
                 Log.d(LOG_TAG,successCode);
-                Log.d(LOG_TAG,latestVersionCode);
+                Log.d(LOG_TAG,latestVersionName);
 
                 return successCode.equals("200");
             } catch (MalformedURLException e) {
@@ -88,14 +88,15 @@ public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
         super.onPostExecute(isActiveNetwork);
         if(isActiveNetwork){
             Log.d(LOG_TAG,"Active Network Connection");
-            String versionCode = "0.0";
+            String versionName = "0.0";
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(),0);
-                versionCode = Integer.toString(packageInfo.versionCode);
+                versionName = packageInfo.versionName;
+                Log.d(LOG_TAG,versionName);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            if(versionCode.equals(latestVersionCode)){
+            if(versionName.equals(latestVersionName)){
                 Log.d(LOG_TAG,"Latest Version");
             }else{
                 Log.d(LOG_TAG,"Old Version");

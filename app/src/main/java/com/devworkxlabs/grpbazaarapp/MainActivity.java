@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.fab_menu);
 
-        FloatingActionButton callAction = new FloatingActionButton(getBaseContext());
-        callAction.setTitle("Call Us");
+        FloatingActionButton callAction = findViewById(R.id.callAction);
         callAction.setColorNormalResId(R.color.background);
         callAction.setColorPressedResId(R.color.white_pressed);
         callAction.setIcon(R.drawable.ic_phone_black_24dp);
@@ -81,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton shopAction = new FloatingActionButton(getBaseContext());
-        shopAction.setTitle("Shop");
+        FloatingActionButton shopAction = findViewById(R.id.shopAction);
         shopAction.setColorNormalResId(R.color.background);
         shopAction.setColorPressedResId(R.color.white_pressed);
         shopAction.setIcon(R.drawable.ic_shopping_basket_black_24dp);
@@ -94,8 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton rateAction = new FloatingActionButton(getBaseContext());
-        rateAction.setTitle("Rate Us");
+        FloatingActionButton rateAction = findViewById(R.id.rateAction);
         rateAction.setColorNormalResId(R.color.background);
         rateAction.setColorPressedResId(R.color.white_pressed);
         rateAction.setIcon(R.drawable.ic_rate_review_black_24dp);
@@ -108,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        menuMultipleActions.addButton(shopAction);
-        menuMultipleActions.addButton(rateAction);
-        menuMultipleActions.addButton(callAction);
         menuMultipleActions.setVisibility(View.INVISIBLE);
 
 
