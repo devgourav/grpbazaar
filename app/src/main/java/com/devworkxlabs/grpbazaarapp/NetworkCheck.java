@@ -69,7 +69,7 @@ public class NetworkCheck extends AsyncTask<Context, Void, Boolean> {
 
                 successCode = detailsObject.getJSONObject("codes").getString("success");
                 latestVersionName = detailsObject.getJSONObject("metaDetails").getString("versionName");
-                callContactNumber = detailsObject.getJSONObject("details").getJSONObject("callContactNumber").getString("versionName");
+                callContactNumber = detailsObject.getJSONObject("details").getJSONObject("contact").getString("callContactNumber");
 
 
                 SharedPreferences sharedPref = context.getSharedPreferences("pref",Context.MODE_PRIVATE);

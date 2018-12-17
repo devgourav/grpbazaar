@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse(callContactNumber));
+                Log.d(LOG_TAG,"tel:"+callContactNumber);
+                intent.setData(Uri.parse("tel:"+callContactNumber));
                 startActivity(intent);
             }
         });
